@@ -115,8 +115,9 @@ function ns.InfoPanel:Update(step, quest)
 
         -- Objective text from the quest log (if the player has the quest in log)
         local objLines = {}
-        if quest.id and quest.id ~= 0 then
-            local objectives = C_QuestLog.GetQuestObjectives(quest.id)
+        local questID = quest.resolvedQuestID or quest.id
+        if questID and questID ~= 0 then
+            local objectives = C_QuestLog.GetQuestObjectives(questID)
             if objectives then
                 for _, obj in ipairs(objectives) do
                     local pct = (obj.numFulfilled or 0) / math.max(obj.numRequired or 1, 1)

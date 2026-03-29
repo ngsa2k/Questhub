@@ -2,9 +2,9 @@
 -- Phase 4: First-craft XP reminder.
 --
 -- Background: The first time a character crafts any recipe they receive a
--- large bonus XP ("First Craft" award).  QuestHUD injects a special
--- "firstcraft" step into the Silvermoon City hub at Step 2 to remind
--- Alchemy + Herbalism players to make their first flask.
+-- large bonus XP ("First Craft" award). QuestHUD injects a special
+-- first-craft quest into the Silvermoon City catalog to remind Alchemy /
+-- Herbalism players to make their first flask.
 --
 -- Behaviour:
 --   1. On PLAYER_LOGIN, check profession loadout.
@@ -61,17 +61,16 @@ local function HasAlchemyOrHerbalism()
     return false
 end
 
---- Remove all "firstcraft" type entries from QuestHUD_Route when dismissed.
+-- Remove all "firstcraft" entries from the quest catalog when dismissed.
 local function PruneFirstCraftEntries()
-    if not QuestHUD_Route then return end
-    for _, step in ipairs(QuestHUD_Route) do
-        if step.quests then
-            for i = #step.quests, 1, -1 do
-                if step.quests[i].type == "firstcraft" then
-                    table.remove(step.quests, i)
-                end
-            end
+    if not QuestHUD_QuestCatalog then return end
+    for index = #QuestHUD_QuestCatalog, 1, -1 do
+        if QuestHUD_QuestCatalog[index].type == "firstcraft" then
+            table.remove(QuestHUD_QuestCatalog, index)
         end
+    end
+    if QuestHUD_QuestCatalogByKey then
+        QuestHUD_QuestCatalogByKey.first_flask_silvermoon_apothecary = nil
     end
 end
 
