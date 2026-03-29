@@ -117,7 +117,10 @@ ns.modules = setmetatable({},{
 						module.eventFrame.moduleName = name;
 						module.eventFrame:SetScript("OnEvent",moduleEventFunc)
 					end
-					module.eventFrame:RegisterEvent(event);
+					local ok, err = pcall(module.eventFrame.RegisterEvent, module.eventFrame, event)
+					if not ok then
+						ns:print("Module '"..name.."' skipped unknown event: "..event)
+					end
 				end
 			end
 		end
@@ -1015,7 +1018,7 @@ function QuestHUDMixin:ToggleOptions()
 		ACD:Close(addon);
 	else
 		ACD:Open(addon);
-		ACD.OpenFrames[addon]:SetStatusText(GAME_VERSION_LABEL..CHAT_HEADER_SUFFIX.."@project-version@");
+		ACD.OpenFrames[addon]:SetStatusText(GAME_VERSION_LABEL..CHAT_HEADER_SUFFIX.."1.0.0");
 	end
 end
 

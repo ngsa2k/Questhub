@@ -44,7 +44,7 @@ local function printFrames(key,value)
 		local count = 0;
 		local regions = {Minimap:GetRegions()};
 		for r=1, #regions do
-			print("GetRegions()"," - ",regions[r]:GetDebugName());
+			ns:print("GetRegions(): "..regions[r]:GetDebugName());
 			count = count + 1;
 		end
 
@@ -60,7 +60,7 @@ local function printFrames(key,value)
 		--ns:print("Search for unwanted textures/fontstrings anchored on minimap...");
 		local childs = {Minimap:GetChildren()};
 		for i=1, #childs do
-			print("GetChildren()"," - ",childs[i]:GetDebugName());
+			ns:print("GetChildren(): "..childs[i]:GetDebugName());
 			count = count + 1;
 		end
 
@@ -75,7 +75,7 @@ local function printFrames(key,value)
 	for i=1, value:GetNumPoints() do
 		local _,parent = value:GetPoint(i);
 		if parent==Minimap then
-			print("pairs(_G)"," - ",value:GetDebugName());
+			ns:print("pairs(_G): "..value:GetDebugName());
 			return true;
 		end
 	end

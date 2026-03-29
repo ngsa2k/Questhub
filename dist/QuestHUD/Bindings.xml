@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="TOGGLEQUESTHUD" header="QUESTHUD" category="ADDONS">
+		QuestHUD:Toggle();
+	</Binding>
+	<Binding name="TOGGLEQUESTHUDMOUSE" category="ADDONS">
+		QuestHUD:ToggleMouse();
+	</Binding>
+	<Binding name="TOGGLEQUESTHUDBACKGROUND" category="ADDONS">
+		QuestHUD:ToggleBackground();
+	</Binding>
+</Bindings>

@@ -8,7 +8,7 @@ ns.L = setmetatable(L,{__index=function(t,k)
 end});
 
 -- Do you want to help localize this addon?
--- https://www.curseforge.com/wow/addons/@cf-project-name@/localization
+-- https://www.curseforge.com/wow/addons/questhud/localization
 
 --@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 if LOCALE_deDE then

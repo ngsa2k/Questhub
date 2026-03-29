@@ -120,7 +120,7 @@ ns.FirstCraft.dbDefaults = {
 }
 
 ns.FirstCraft.events = {
-    TRADE_SKILL_ITEM_CRAFTED_RESULT = OnRecipeCrafted,
+    TRADE_SKILL_CRAFT_BEGIN = OnRecipeCrafted,
 }
 
 function ns.FirstCraft:AddOptions()

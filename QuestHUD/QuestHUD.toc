@@ -1,11 +1,11 @@
 ## Interface: 120001
 ## Title: QuestHUD
 ## Notes: Optimised quest routing HUD for 80-90 levelling in Midnight. Directional arrow, node overlay, XP tracking.
-## Version: @project-version@
+## Version: 1.0.0
 
 ## Category-enUS: Map
 
-## Author: [Your name]
+## Author: QuestHUD Team
 ## IconTexture: 134215
 ## SavedVariables: QuestHUDDB
 

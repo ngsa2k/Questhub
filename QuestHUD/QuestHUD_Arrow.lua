@@ -6,8 +6,8 @@ local addon, ns = ...
 local HBD   = LibStub("HereBeDragons-2.0")
 local media = "Interface\\AddOns\\" .. addon .. "\\media\\"
 
--- Arrival threshold: ~50 yards in zone-relative units (0‒1 scale, zone ≈ 1000 yards wide)
-local ARRIVAL_DIST_SQ = (50 / 1000) ^ 2   -- squared to avoid sqrt
+-- Arrival threshold: ~50 yards (squared, since distance from GetWorldVector is in yards)
+local ARRIVAL_DIST_SQ = 50 * 50   -- 2500
 
 -- Arrow colours per quest type (vertex colour tint on a white arrow texture)
 local QUEST_COLORS = {
@@ -42,9 +42,21 @@ local function ArrowTick()
     end
 
     -- HereBeDragons: bearing from player TO the target coordinate
-    local angle, _, distSq = HBD:GetDirectionToPlayerFromCoords(target.mapID, target.x, target.y)
-    if not angle then
+    local pX, pY, pInstance = HBD:GetPlayerWorldPosition()
+    if not pX then
+        arrowFrame:SetAlpha(0.3)
+        return
+    end
+
+    local tX, tY, tInstance = HBD:GetWorldCoordinatesFromZone(target.x, target.y, target.mapID)
+    if not tX or pInstance ~= tInstance then
         -- Target is on a different continent or unreachable
+        arrowFrame:SetAlpha(0.3)
+        return
+    end
+
+    local angle, dist = HBD:GetWorldVector(pInstance, pX, pY, tX, tY)
+    if not angle then
         arrowFrame:SetAlpha(0.3)
         return
     end
@@ -55,6 +67,7 @@ local function ArrowTick()
     arrowTex:SetRotation(angle - facing)
 
     -- Arrival pulse: scale-pulse when within ~50 yards
+    local distSq = dist and (dist * dist) or nil
     if distSq and distSq <= ARRIVAL_DIST_SQ then
         local pulse = 1.0 + 0.35 * math.abs(math.sin(GetTime() * math.pi / 0.6))
         arrowFrame:SetScale(pulse)
