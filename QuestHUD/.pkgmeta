@@ -1,0 +1,43 @@
+package-as: QuestHUD
+
+externals:
+    libs/LibStub:
+        url: https://repos.curseforge.com/wow/libstub/trunk
+        tag: latest
+
+    libs/CallbackHandler-1.0:
+        url: https://repos.curseforge.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+        tag: latest
+
+    libs/AceGUI-3.0:
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceGUI-3.0
+        tag: latest
+
+    libs/AceConfig-3.0:
+        url: https://repos.curseforge.com/wow/ace3/trunk/AceConfig-3.0
+        tag: latest
+
+    libs/LibDataBroker-1.1:
+        url: https://repos.curseforge.com/wow/libdatabroker-1-1
+        tag: latest
+
+    libs/LibDBIcon-1.0:
+        url: https://repos.curseforge.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
+        tag: latest
+
+    libs/HereBeDragons:
+        url: https://repos.curseforge.com/wow/herebedragons
+        tag: latest
+
+    libs/LibColors-1.0:
+        url: https://github.com/HizurosWoWAddOns/LibColors-1.0.git
+        tag: latest
+
+enable-nolib-creation: no
+enable-toc-creation: yes
+
+ignore:
+    - libs/LibStub/tests
+    - libs/HereBeDragons/CallbackHandler-1.0
+    - libs/HereBeDragons/LibStub
+    - tools
